@@ -201,7 +201,7 @@ skillwatch-ai/
 
 ## 🌐 Live Demo
 
-**Live Application:** Add your public Vercel deployment URL here.
+**Live Application:** https://skillwatch-ai.vercel.app/login
 
 **Source Code:** [GitHub Repository](https://github.com/tgnaneshwar007-cell/skillwatch-ai)
 
