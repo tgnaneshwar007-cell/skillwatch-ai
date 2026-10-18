@@ -1,173 +1,252 @@
-# SkillWatch AI — Real-Time Training Centre Monitoring & Infrastructure Compliance
+# SkillWatch AI 🚀
+### AI-Powered Training Centre Monitoring & Infrastructure Compliance Platform
 
-> **Smart India Hackathon 2026**  
-> **Problem Statement ID:** SIH26245  
-> **Theme:** Smart Education  
-> **Organization:** Ministry of Skill Development and Entrepreneurship (MSDE)  
-> **Status:** Fully Functional Production MVP  
+<p align="center">
+  <strong>Smart India Hackathon 2026 | Problem Statement: SIH26245</strong>
+</p>
 
----
+SkillWatch AI is a technology-driven platform designed to improve training centre monitoring, attendance management, infrastructure inspections, and compliance tracking. The project aims to help stakeholders monitor training centre operations through a centralized, intuitive, and data-driven interface.
 
-## 1. Executive Summary
-
-**SkillWatch AI** is a government-oriented monitoring platform engineered for the **Ministry of Skill Development & Entrepreneurship (MSDE)**. It delivers real-time attendance telemetry, physical infrastructure compliance auditing, transparent rule-based anomaly detection, and closed-loop corrective action tracking across training centres (PMKK, ITIs, and Pradhan Mantri Kaushal Kendras).
-
-### End-to-End Operational Workflow
-```
-[Attendance Session Created] 
-       │
-       ▼
-[Dynamic QR Projected on Screen] ──▶ [Trainee Mobile Camera Scan / Token Entry]
-                                            │
-                                            ▼
-[8-Dimension Physical Audit Form] ──▶ [Server-Side Expiry & Duplicate Validation]
-       │                                    │
-       ▼                                    ▼
-[Photo Evidence Uploaded]            [Verified Attendance Stored in PostgreSQL]
-       │
-       ▼
-[Deterministic Rule Engine Flags Non-Compliance]
-       │
-       ▼
-[Critical / High Alert Dispatched to District Officer]
-       │
-       ▼
-[Official Issues Corrective Action Notice with SLA Deadline]
-       │
-       ▼
-[Centre Manager Submits Remediation Proof] ──▶ [Alert Resolved & Dashboard Updated]
-```
+Developed for the **Smart India Hackathon 2026 college-level internal hackathon**, SkillWatch AI secured **5th place** in the event.
 
 ---
 
-## 2. Key Capabilities & Technical Features
+## 🏆 Achievement
 
-### Priority 1: QR Attendance Workflow
-- **Manager Gate Generator:** Authorized managers select an accredited centre, input course/batch metadata, configure expiration durations (15m, 30m, 1h, 2h, 4h), and generate a cryptographically secure token.
-- **Dynamic QR Code:** High-contrast projection using `qrcode.react` with copyable manual token backup and direct mobile URL.
-- **Mobile Trainee Check-In:** Native smartphone camera scanning via `html5-qrcode` with graceful fallback to manual session code input.
-- **Integrity Guards:**
-  - Database unique constraint `(session_id, trainee_id)` rejects duplicate check-ins.
-  - Server-side timestamp validation rejects expired sessions.
-  - Client cannot self-declare attendance; validation is processed via trusted PostgreSQL function `public.check_in_trainee`.
-  - Academic disclaimer: QR codes verify session presence without replacing biometric (AEBAS) kiosks.
+**5th Place — College-Level Internal Hackathon**
 
-### Priority 1: 8-Dimension MSDE Physical Audit Inspection
-- **Configurable Standard Dimensions:**
-  1. Classroom condition & seating capacity (min 30 sq.ft per trainee)
-  2. AEBAS Biometric attendance & IT Lab terminals
-  3. SSC-approved machinery & practical toolkits
-  4. ABC-type fire extinguishers & unobstructed emergency exits
-  5. Gender-segregated sanitation & certified RO drinking water
-  6. Accessibility ramps & tactile pathways for Persons with Disabilities (PwD)
-  7. Power backup (Dedicated Online UPS / Silent DG Set)
-  8. Personal Protective Equipment (PPE) & first aid supplies
-- **Evidence Uploader:** Direct mobile camera capture or photo upload (supports JPEG, PNG, WEBP, PDF up to 5MB).
-- **Transparent Mathematical Formula:**
-  $$\text{Compliance Score} = \frac{\text{Compliant Inspected Items}}{\text{Total Applicable Inspected Items}} \times 100$$
-  *(Uninspected items are excluded from the denominator; returns "Not assessed" if 0 items assessed).*
-
-### Priority 2: Transparent Rule-Based Anomaly Detection
-Deterministic rules detect irregularities without black-box ML claims:
-- `RULE_ATTENDANCE_DEFICIT`: Triggers when batch attendance drops below 70% of enrolled trainees.
-- `RULE_DUPLICATE_ATTENDANCE`: Catches duplicate check-in attempts on active sessions.
-- `RULE_EXPIRED_QR_SCAN`: Flags attempts to scan closed or expired session gates.
-- `RULE_DEFECT_[CATEGORY]`: Automatically generates high/critical severity alerts when an auditor marks an inspection requirement as non-compliant.
-- `RULE_OVERDUE_CORRECTIVE_ACTION`: Monitors remediation SLAs against scheduled deadlines.
-
-### Priority 3: Role-Based Access Control (RBAC) & Security
-- Authenticated roles:
-  - **National Administrator:** Country-wide telemetry, accreditation management, and policy oversight.
-  - **District Officer:** Jurisdiction-level monitoring, alert triage, and corrective action enforcement.
-  - **Training Centre Manager:** Daily gate creation, student onboarding, and defect remediation.
-  - **Field Inspector:** On-site physical checklists and evidence logging.
-- Security enforcement:
-  - Database Row Level Security (RLS) on all 9 PostgreSQL tables.
-  - Security-definer stored procedures for attendance check-ins.
-  - Zero client-side role elevation.
+Our team presented SkillWatch AI as part of our college's internal hackathon for Smart India Hackathon 2026. The experience strengthened our technical implementation, teamwork, and problem-solving approach while motivating us to continue improving the solution.
 
 ---
 
-## 3. Technology Stack
+## 🎯 Problem Statement
 
-- **Frontend:** React 19, TypeScript, Vite, React Router 7, Tailwind CSS v3
-- **Icons & Charts:** Lucide React, Recharts (Area & Bar telemetry charts)
-- **QR Engine:** `qrcode.react` (SVG generator), `html5-qrcode` (camera barcode detector)
-- **Backend / Database:** Supabase PostgreSQL, Supabase Auth, Row Level Security (RLS), Supabase Storage (`evidence` bucket)
-- **Verification:** Built-in automated TypeScript test suite (`scripts/verify-workflows.ts`)
+Training centres require effective ways to monitor attendance, assess infrastructure, track inspections, and maintain compliance records. Manual processes can make monitoring time-consuming and make it difficult to identify issues quickly.
+
+SkillWatch AI aims to address these challenges through a centralized digital platform that supports monitoring, reporting, and data-driven decision-making.
 
 ---
 
-## 4. Quick Start & Local Execution
+## 💡 Our Solution
+
+SkillWatch AI is designed to support training centre administrators and authorized stakeholders through features such as:
+
+- **Dashboard & Monitoring:** Centralized access to relevant training centre information.
+- **Attendance Management:** Support for attendance tracking and monitoring workflows.
+- **Infrastructure Inspections:** Digital inspection and compliance tracking.
+- **Anomaly Detection:** Rule-based detection of potential irregularities where implemented.
+- **Data Management:** Structured storage and retrieval of application data.
+- **Access Control:** Role-based access and authentication where configured.
+
+*Feature availability depends on the current implementation and deployment configuration.*
+
+---
+
+## ✨ Key Objectives
+
+- Improve visibility into training centre operations.
+- Simplify attendance and inspection workflows.
+- Support infrastructure compliance monitoring.
+- Identify potential irregularities for further review.
+- Provide a scalable foundation for future enhancements.
+- Deliver a user-friendly experience for authorized users.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| React | User interface development |
+| TypeScript | Type-safe application development |
+| Vite | Development server and build tooling |
+| Supabase | Backend services and database integration |
+| PostgreSQL | Relational database through Supabase |
+| Git & GitHub | Version control and collaboration |
+| Vercel | Web application deployment, if configured |
+
+---
+
+## 🏗️ Project Architecture
+
+The application follows a modern web application architecture:
+
+1. **Frontend:** React and TypeScript provide the user interface.
+2. **Backend Services:** Supabase provides configured backend capabilities.
+3. **Database:** PostgreSQL stores application data according to the implemented schema.
+4. **Authentication & Authorization:** Configured authentication and database security policies control access where implemented.
+5. **Deployment:** Vercel can host the frontend for public or authorized access, depending on deployment settings.
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
 
 ### Prerequisites
-- Node.js (v20 or v24 recommended)
-- npm (v10 or v11)
 
-### 1. Clone & Install Dependencies
+Install the following:
+
+- Node.js — a current supported LTS version
+- npm
+- Git
+
+### 1. Clone the repository
+
 ```bash
-git clone <repository-url>
-cd "Smart Centre"
+git clone https://github.com/tgnaneshwar007-cell/skillwatch-ai.git
+cd skillwatch-ai
+```
+
+### 2. Install dependencies
+
+```bash
 npm install
 ```
 
-### 2. Run Automated Verification Tests
-```bash
-npm test
-```
-*Executes unit assertions on compliance formulas, attendance deficit calculations, session expiration, and file guards.*
+### 3. Configure environment variables
 
-### 3. Run Development Server
+Create a local environment file based on the example provided in the repository.
+
+For example, if the project uses `.env.example`:
+
+```bash
+cp .env.example .env.local
+```
+
+On Windows, you can also create `.env.local` manually by copying `.env.example`.
+
+Add the appropriate values from your Supabase project:
+
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
+
+Use the exact variable names expected by the application.
+
+**Security:** Never commit `.env.local`, private API keys, database passwords, or Supabase secret/service-role keys to GitHub. Frontend environment variables prefixed with `VITE_` are exposed to the browser, so they must never contain private secrets. Configure Row Level Security (RLS) and appropriate database permissions.
+
+### 4. Start the development server
+
 ```bash
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
 
-### 4. Build for Production
+Open the local URL displayed in your terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+### 5. Build for production
+
 ```bash
 npm run build
 ```
 
----
+To preview the production build locally, run:
 
-## 5. Supabase Database Deployment
-
-1. Create a project at [supabase.com](https://supabase.com).
-2. Navigate to **SQL Editor** in your Supabase dashboard.
-3. Open `supabase/schema.sql` from this repository and run the entire script.
-   - Creates `centres`, `profiles`, `attendance_sessions`, `attendance_records`, `inspections`, `inspection_items`, `evidence_files`, `alerts`, `corrective_actions`, and `audit_logs`.
-   - Enables RLS policies for each role.
-   - Installs the trusted `check_in_trainee()` function and `trg_inspection_item_alert` trigger.
-4. In **Storage**, create a bucket named `evidence` (public or authenticated read).
-5. Copy `.env.example` to `.env.local` and configure your credentials:
-   ```bash
-   VITE_SUPABASE_URL=https://your-supabase-project.supabase.co
-   VITE_SUPABASE_PUBLISHABLE_KEY=your-publishable-anon-key
-   ```
-6. If credentials are not provided, **SkillWatch AI automatically runs in Interactive Demonstration Mode with local persistence**, enabling complete end-to-end evaluation out-of-the-box!
+```bash
+npm run preview
+```
 
 ---
 
-## 6. Demonstration & Evaluator Guide
+## ⚙️ Environment Configuration
 
-For Smart India Hackathon jury presentation:
-1. **Login:** Use the 1-Click Evaluator buttons on the `/login` screen to switch between:
-   - *National Administrator* (Dr. Rajeshwar Sharma)
-   - *District Officer* (Priyanka Rathore, IAS)
-   - *Centre Manager* (Vikramaditya Meena)
-   - *Field Inspector* (Sunita Deshmukh)
-2. **Attendance Session Creation:** Navigate to **QR Attendance Sessions** -> Select *PMKK Jaipur* -> Click **Generate QR Gate & Token**.
-3. **Trainee Check-In:** Click **Launch Trainee View** (or navigate to `/check-in`) -> Click **Verify & Record Attendance** -> Notice verified status badge.
-4. **Duplicate Rejection Test:** Click submit again with the same Trainee ID -> Notice red rejection alert: *"Duplicate check-in rejected: Trainee already checked in"*.
-5. **Infrastructure Inspection:** Navigate to **Infrastructure Inspections** -> **New Physical Audit** -> Mark *Fire Safety* as **Non-Compliant** -> Submit.
-6. **Rule Engine Trigger:** Navigate to **Alerts & AI Insights** -> Confirm the automated non-compliance alert appears with rule explanation and next steps.
-7. **Corrective Action & Resolution:** Click **Assign Action** -> Set remediation SLA -> Open **Corrective Actions** -> Click **Submit Resolution** -> Verify alert closes and dashboard updates.
+Before running the application, ensure that:
+
+- The Supabase project URL is correct.
+- The publishable key is configured correctly.
+- Required database tables and policies have been set up.
+- Any additional environment variables required by the code are configured.
+- Private credentials remain outside version control.
+
+Do not publish real environment values in screenshots, documentation, issue reports, or public commits.
 
 ---
 
-## 7. Compliance & Ethical Disclaimers
+## 🔐 Security Considerations
 
-- SkillWatch AI is an academic prototype developed for the Smart India Hackathon 2026 (SIH26245).
-- Does not claim official endorsement or invent government regulatory standards.
-- QR codes provide session presence verification; they do not replace biometric attendance (AEBAS) kiosks.
-- All rule alerts are transparent, deterministic, and audited.
+Security is an important part of a monitoring platform.
+
+- Use environment variables for configuration.
+- Never expose private backend credentials in frontend code.
+- Enable and verify Row Level Security for relevant Supabase tables.
+- Apply least-privilege access policies.
+- Validate user input and authorization on trusted backend or database layers.
+- Review deployment access settings before sharing the application publicly.
+
+---
+
+## 📂 Repository Structure
+
+The project follows a typical React and Vite structure. Exact folders may vary depending on the current implementation.
+
+```text
+skillwatch-ai/
+├── public/             # Static public assets
+├── src/                # Application source code
+├── .env.example        # Environment variable template
+├── .gitignore          # Files excluded from Git
+├── package.json        # Dependencies and scripts
+├── package-lock.json   # Locked npm dependency versions
+├── tsconfig.json       # TypeScript configuration
+├── vite.config.ts      # Vite configuration
+└── README.md           # Project documentation
+```
+
+---
+
+## 🌐 Live Demo
+
+**Live Application:** Add your public Vercel deployment URL here.
+
+**Source Code:** [GitHub Repository](https://github.com/tgnaneshwar007-cell/skillwatch-ai)
+
+If the application requires authentication or is not publicly deployed, update this section with the appropriate access instructions instead.
+
+---
+
+## 🗺️ Future Improvements
+
+Potential future enhancements include:
+
+- Advanced analytics and reporting.
+- Improved monitoring dashboards.
+- More comprehensive inspection workflows.
+- Notifications for important compliance issues.
+- Enhanced accessibility and responsive design.
+- Expanded testing, monitoring, and security validation.
+- Additional integrations based on stakeholder requirements.
+
+---
+
+## 👥 Team & Acknowledgements
+
+Developed collaboratively for the Smart India Hackathon 2026 college-level internal hackathon.
+
+We thank our college, mentors, organizers, and fellow participants for providing an opportunity to innovate, collaborate, and solve real-world problems through technology.
+
+---
+
+## 📌 Project Status
+
+**Current Status:** College-level hackathon project under continued development.
+
+**Achievement:** 5th Place — College-Level Internal Hackathon.
+
+Progression to subsequent SIH stages is subject to the official selection process.
+
+---
+
+## 📄 License
+
+No license has been specified yet. Unless a license is added, others generally do not receive permission to reuse, distribute, or modify the project's copyrighted code beyond rights granted by applicable law.
+
+---
+
+<p align="center">
+  <strong>SkillWatch AI — Building smarter, more transparent training centre monitoring.</strong>
+</p>
